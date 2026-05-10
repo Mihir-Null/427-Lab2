@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CMSC427 Lab 02 – Parametric Objects</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #1a1a2e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: monospace;
+            color: #e0e0e0;
+        }
+        #canvas-host {
+            width: min(1280px, 92vw);
+            aspect-ratio: 16 / 9;
+        }
+        #canvas-host canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border: 2px solid #444;
+        }
+        #controls { margin-top: 8px; font-size: 13px; color: #aaa; text-align: center; line-height: 1.5; }
+    </style>
+</head>
+<body>
+    <link data-trunk rel="rust" data-target-name="lab2" data-wasm-opt="z" />
+    <div id="canvas-host"></div>
+    <div id="controls">
+        1 / 2 / 3 / 4 — switch mesh &nbsp;|&nbsp; = or + — scale up &nbsp;|&nbsp; &minus; — scale down
+    </div>
+</body>
+</html>
