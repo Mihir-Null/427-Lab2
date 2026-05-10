@@ -24,11 +24,11 @@ impl GpuCtx
     {
         let size = window.inner_size();
 
-        // wasm path for browser rendering
+        // wasm path for browser rendering — try WebGPU first, fall back to WebGL2
         #[cfg(target_arch = "wasm32")]
         let (surface, adapter) = {
             let instance = wgpu::Instance::new(wgpu::InstanceDescriptor {
-                backends:                 wgpu::Backends::GL,
+                backends:                 wgpu::Backends::BROWSER_WEBGPU | wgpu::Backends::GL,
                 flags:                    wgpu::InstanceFlags::default(),
                 memory_budget_thresholds: wgpu::MemoryBudgetThresholds::default(),
                 backend_options:          wgpu::BackendOptions::default(),
@@ -39,7 +39,7 @@ impl GpuCtx
                 power_preference:       wgpu::PowerPreference::HighPerformance,
                 compatible_surface:     Some(&surface),
                 force_fallback_adapter: false,
-            }).await.expect("no webgl2 adapter found");
+            }).await.expect("no WebGPU or WebGL2 adapter — check browser support");
             (surface, adapter)
         };
 
@@ -86,7 +86,10 @@ impl GpuCtx
             label:             Some("Device"),
             required_features: wgpu::Features::empty(),
             required_limits:   if cfg!(target_arch = "wasm32") {
-                wgpu::Limits::downlevel_webgl2_defaults()
+                match adapter.get_info().backend {
+                    wgpu::Backend::Gl => wgpu::Limits::downlevel_webgl2_defaults(),
+                    _                 => wgpu::Limits::default(),
+                }
             } else {
                 wgpu::Limits::default()
             },
