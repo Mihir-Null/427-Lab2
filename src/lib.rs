@@ -246,12 +246,6 @@ impl State
     fn render(&mut self) -> Result<(), ()>
     {
         self.window.request_redraw();
-        // on WASM, winit doesn't fire Resized at startup so we configure here on first render
-        if !self.gpu.is_configured {
-            let s = self.window.inner_size();
-            self.gpu.resize(s.width, s.height);
-            if !self.gpu.is_configured { return Ok(()); }
-        }
 
         // build MVP: Projection * View * Model
         let t     = self.start_time.elapsed().as_secs_f32();

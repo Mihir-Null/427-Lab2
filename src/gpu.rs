@@ -108,9 +108,9 @@ impl GpuCtx
             view_formats:                  vec![],
             desired_maximum_frame_latency: 2,
         };
-        // don't configure yet - wait for the first Resized event
+        surface.configure(&device, &config);
 
-        Self { surface, device, queue, config, is_configured: false }
+        Self { surface, device, queue, config, is_configured: true }
     }
 
     pub fn resize(&mut self, width: u32, height: u32)
