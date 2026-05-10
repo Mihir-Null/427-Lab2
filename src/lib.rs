@@ -31,7 +31,7 @@ pub mod gpu;
 pub mod mesh;
 
 use std::sync::Arc;
-use std::time::Instant;
+use web_time::Instant;
 use bytemuck::{Pod, Zeroable};
 use glam::{Mat4, Vec3};
 use wgpu::util::DeviceExt;

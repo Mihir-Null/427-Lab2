@@ -10,6 +10,7 @@ crate-type = ["cdylib", "rlib"]
 [dependencies]
 wgpu     = "29.0.1"
 winit    = { version = "0.30", default-features = false, features = ["x11", "rwh_06"] }
+web-time = "1"
 glam     = { version = "0.27", features = ["bytemuck"] }
 bytemuck = { version = "1", features = ["derive"] }
 log      = "0.4"
