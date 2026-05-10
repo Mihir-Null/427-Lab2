@@ -1,5 +1,7 @@
 # CMSC427 Lab 02 Report: Parametric Objects
 
+**Live demo:** https://mihir-null.github.io/427-Lab2/
+
 This lab extends the pipeline from lab 01 into three dimensions. It adds index buffers, a combined Model-View-Projection matrix uploaded as a uniform, and four procedurally generated meshes that can be switched at runtime. I also added a scale keybind (+/-) that multiplies the Model matrix to shrink or grow the object without touching vertex data. Infrastructure is ported from lab 0/1 and extended with a dedicated `mesh.rs` module and the `glam` math library for matrix operations. 
 
 As before, I used the [learn-wgpu tutorial](https://sotrh.github.io/learn-wgpu/) as the primary reference and AI tools for understanding and mapping concepts, not for writing code. VSCode extensions were used for linting.
