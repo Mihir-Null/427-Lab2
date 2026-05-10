@@ -1,14 +1,11 @@
 [package]
-name = "lab2"
-version = "0.1.0"
-edition = "2021"
+name     = "lab2"
+version  = "0.1.0"
+edition  = "2021"
+autobins = false  # suppress bin target so Trunk only sees the cdylib, avoids wasm filename collision
 
 [lib]
 crate-type = ["cdylib", "rlib"]
-
-[[bin]]
-name = "lab2"
-path = "src/main.rs"
 
 [dependencies]
 wgpu     = "29.0.1"
